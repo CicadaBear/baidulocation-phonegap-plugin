@@ -12,6 +12,7 @@ import org.json.JSONObject;
 
 import android.util.Log;
 
+import com.baidu.location.BDAbstractLocationListener;
 import com.baidu.location.BDLocation;
 import com.baidu.location.BDLocationListener;
 import com.baidu.location.LocationClient;
@@ -27,7 +28,7 @@ public class BaiduLocation extends CordovaPlugin {
 	public boolean result = false;
 	public CallbackContext callbackContext;
 
-	public BDLocationListener myListener;
+	public BDAbstractLocationListener myListener;
 
 	private static final Map<Integer, String> ERROR_MESSAGE_MAP = new HashMap<Integer, String>();
 
@@ -54,7 +55,7 @@ public class BaiduLocation extends CordovaPlugin {
 
 	@Override
 	public boolean execute(String action, JSONArray args,
-			final CallbackContext callbackContext) {
+						   final CallbackContext callbackContext) {
 		setCallbackContext(callbackContext);
 		if (GET_ACTION.equals(action)) {
 			cordova.getActivity().runOnUiThread(new Runnable() {
@@ -99,7 +100,7 @@ public class BaiduLocation extends CordovaPlugin {
 		return result;
 	}
 
-	public class MyLocationListener implements BDLocationListener {
+	public class MyLocationListener extends BDAbstractLocationListener {
 		@Override
 		public void onReceiveLocation(BDLocation location) {
 			if (location == null)
@@ -120,16 +121,16 @@ public class BaiduLocation extends CordovaPlugin {
 
 				switch (location.getLocType()) {
 
-				case BDLocation.TypeGpsLocation:
-					coords.put("speed", location.getSpeed());
-					coords.put("altitude", location.getAltitude());
-					jsonObj.put("SatelliteNumber",
-							location.getSatelliteNumber());
-					break;
+					case BDLocation.TypeGpsLocation:
+						coords.put("speed", location.getSpeed());
+						coords.put("altitude", location.getAltitude());
+						jsonObj.put("SatelliteNumber",
+								location.getSatelliteNumber());
+						break;
 
-				case BDLocation.TypeNetWorkLocation:
-					jsonObj.put("addr", location.getAddrStr());
-					break;
+					case BDLocation.TypeNetWorkLocation:
+						jsonObj.put("addr", location.getAddrStr());
+						break;
 				}
 
 				Log.d("BaiduLocationPlugin", "run: " + jsonObj.toString());
@@ -151,6 +152,10 @@ public class BaiduLocation extends CordovaPlugin {
 	public void onDestroy() {
 		if (locationClient != null && locationClient.isStarted()) {
 			locationClient.stop();
+			locationClient.unRegisterLocationListener(myListener);
+			locationClient = null;
+		}else if(locationClient != null){
+			locationClient.unRegisterLocationListener(myListener);
 			locationClient = null;
 		}
 		super.onDestroy();
