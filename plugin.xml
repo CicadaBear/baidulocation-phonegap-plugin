@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
  
-<plugin xmlns="http://www.phonegap.com/ns/plugins/1.0" id="com.doabit.phonegap.plugins.baidulocation" version="0.1.0">
+<plugin xmlns="http://www.phonegap.com/ns/plugins/1.0" xmlns:android="http://schemas.android.com/apk/res/android"  id="com.doabit.phonegap.plugins.baidulocation" version="0.1.0">
     <name>phonegap-plugin-baidulocation</name>
     <description>Baidu Location Plugin for Phonegap</description>
     <license>MIT</license>
@@ -16,7 +16,29 @@
             <feature name="BaiduLocation">
                 <param name="android-package" value="com.doabit.phonegap.plugins.baidulocation.BaiduLocation"/>
             </feature>
-        </config-file> 
-        <source-file src="src/android/BaiduLocation.java" target-dir="src/com/doabit/phonegap/plugins/baidulocation" />     
+        </config-file>
+        <config-file target="AndroidManifest.xml" parent="/manifest">
+            <uses-permission android:name="com.android.launcher.permission.READ_SETTINGS" />
+            <!-- 这个权限用于进行网络定位 -->
+            <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+            <!-- 这个权限用于访问GPS定位 -->
+            <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+            <!-- 用于访问wifi网络信息，wifi信息会用于进行网络定位 -->
+            <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+            <!-- 获取运营商信息，用于支持提供运营商信息相关的接口 -->
+            <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+            <!-- 用于读取手机当前的状态 -->
+            <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+            <!-- 写入扩展存储，向扩展卡写入数据，用于写入离线定位数据 -->
+            <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+            <!-- 访问网络，网络定位需要上网 -->
+            <uses-permission android:name="android.permission.INTERNET" />
+        </config-file>
+        <framework src="src/android/baidulocation.gradle" custom="true" type="gradleReference"/>
+        <resource-file src="src/android/libs/BaiduLBS_Android.jar" target="libs/BaiduLBS_Android.jar"/>
+        <resource-file src="src/android/libs/arm64-v8a/liblocSDK7b.so" target="libs/arm64-v8a/liblocSDK7b.so"/>
+        <resource-file src="src/android/libs/armeabi/liblocSDK7b.so" target="libs/armeabi/liblocSDK7b.so"/>
+        <resource-file src="src/android/libs/armeabi-v7a/liblocSDK7b.so" target="libs/armeabi-v7a/liblocSDK7b.so"/>
+        <source-file src="src/android/com/doabit/phonegap/plugins/BaiduLocation.java" target-dir="src/com/doabit/phonegap/plugins/baidulocation" />
      </platform>         
 </plugin>
