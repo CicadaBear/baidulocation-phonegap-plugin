@@ -1,0 +1,40 @@
+{
+  "name": "phonegap-plugin-baidulocation",
+  "version": "1.0.0",
+  "description": "Baidu Location Plugin for Phonegap.",
+  "cordova": {
+    "id": "phonegap-plugin-baidulocation",
+    "platforms": [
+      "android"
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CicadaBear/baidulocation-phonegap-plugin.git"
+  },
+  "keywords": [
+    "ecosystem:cordova",
+    "ecosystem:phonegap",
+    "cordova-ios",
+    "cordova-plugin-baidulocation",
+    "cordova-android",
+    "cordova-windows",
+    "cordova-wp8",
+    "cordova-blackberry10",
+    "cordova-browser",
+    "cordova:plugin"
+  ],
+  "engines": {
+    "cordovaDependencies": {
+      "7.0.0": {
+        "cordova-android": ">=6.3.0"
+      }
+    }
+  },
+  "author": "doabit",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/CicadaBear/baidulocation-phonegap-plugin/issues"
+  },
+  "homepage": "https://github.com/CicadaBear/baidulocation-phonegap-plugin#readme"
+}

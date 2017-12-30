@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
  
 <plugin xmlns="http://www.phonegap.com/ns/plugins/1.0" id="com.doabit.phonegap.plugins.baidulocation" version="0.1.0">
-    <name>BaiduLocation</name>
+    <name>phonegap-plugin-baidulocation</name>
     <description>Baidu Location Plugin for Phonegap</description>
     <license>MIT</license>
     <keywords>baidulocation, phonegap</keywords>
