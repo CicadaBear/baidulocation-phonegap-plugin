@@ -46,9 +46,9 @@
         </config-file>
         <framework src="src/android/baidulocation.gradle" custom="true" type="gradleReference"/>
         <resource-file src="src/android/libs/BaiduLBS_Android.jar" target="libs/BaiduLBS_Android.jar"/>
-        <resource-file src="src/android/libs/arm64-v8a/liblocSDK7b.so" target="libs/arm64-v8a/liblocSDK7b.so"/>
-        <resource-file src="src/android/libs/armeabi/liblocSDK7b.so" target="libs/armeabi/liblocSDK7b.so"/>
-        <resource-file src="src/android/libs/armeabi-v7a/liblocSDK7b.so" target="libs/armeabi-v7a/liblocSDK7b.so"/>
+        <resource-file src="src/android/libs/arm64-v8a/*" target-dir="libs/arm64-v8a"/>
+        <resource-file src="src/android/libs/armeabi/*" target-dir="libs/armeabi"/>
+        <resource-file src="src/android/libs/armeabi-v7a/*" target="libs/armeabi-v7a"/>
         <source-file src="src/android/com/doabit/phonegap/plugins/baidulocation/BaiduLocation.java" target-dir="src/com/doabit/phonegap/plugins/baidulocation" />
      </platform>         
 </plugin>
