@@ -1,6 +1,6 @@
 {
   "name": "phonegap-plugin-baidulocation",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Baidu Location Plugin for Phonegap.",
   "cordova": {
     "id": "phonegap-plugin-baidulocation",
